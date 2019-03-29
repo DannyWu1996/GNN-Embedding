@@ -7,4 +7,4 @@
 
 ## 2. [a new model for learning in graph domains](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1555942)
 
-这篇文章**first neural network in graph** 还是有可读之处。传统的方法将**graphical data structure**转换成一个flat的向量，从而失去了其中重要的**topological information**，并且其最终的效果很大程度上取决于去处理阶段（转化成向量）。对于这种类似图的结构化数据，目的是为了找到一个函数
+这篇文章**first neural network in graph** 还是有可读之处。传统的方法将**graphical data structure**转换成一个flat的向量，从而失去了其中重要的**topological information**，并且其最终的效果很大程度上取决于去处理阶段（转化成向量）。对于这种类似图的结构化数据，目的是为了找到一个函数$$\tau(G, n)$$
