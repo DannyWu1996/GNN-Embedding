@@ -3,5 +3,8 @@
 
 ## 1. [convolutional networks on graphs for learning molecular fingerprints](http://papers.nips.cc/paper/5954-convolutional-networks-on-graphs-for-learning-molecular-fingerprints.pdf)
 这篇文章主要是在分子结构上做一个操作，其中介绍了Circular fingerprints和differentiable fingerprints算法 第一个算法简单来说就是每一层对每一个节点周围的邻居包括其自身属性进行相加(类比卷积)，然后通过一个hash函数作为该节点的属性，并用mod操作映射到所谓的fingerprint向量上，而这个fingerprint每一个unit用来表示某种特殊的子结构(这样对于一个完全连接图来说，它只会映射到一个index上，保证了只有一个子结构)。最终整个molecule就可以用这些子结构的集合来表示(全局上pooling操作，将任意长度的Graph映射到fix长度的向量上)，其子结构的大小取决于网络的层数（也应取决于其节点个数）。 第二个算法是对上述算法中一些离散操作进行连续可导的泛化，用一层Neural Network来替代，并用sigmoid函数来保证其连续且平滑，而对于Index方法，由于每个节点均能决定fingerprint上一个bit上的值，那么对于小分子但是fingerprint的长度又很长时，势必有稀疏问题，也是用一个softmax来代替这个index即原始的mod操作，来类比每种category的概率，然后将这些概率pooling一下来表示原始的molecule 文中也提到了第一个算法不收到节点排序问题影响，解决办法是一对节点的属性向量进行一个映射到scalar的排序，或者直接用summation的pooling策略
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 ## 2. [a new model for learning in graph domains](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1555942)
-这篇文章first neural network in graph还是有可读之处。传统的方法将graphical data structure转换成一个flat的向量，从而失去了其中重要的topological information，并且其最终的效果很大程度上取决于去处理阶段（转化成向量）。对于这种类似图的结构化数据，目的是为了找到一个函数$$\tau{G, x}$$转化到一个$$\R_m$$
+
+这篇文章**first neural network in graph** 还是有可读之处。传统的方法将**graphical data structure**转换成一个flat的向量，从而失去了其中重要的**topological information**，并且其最终的效果很大程度上取决于去处理阶段（转化成向量）。对于这种类似图的结构化数据，目的是为了找到一个函数
